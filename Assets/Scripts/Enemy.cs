@@ -2,35 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Spaceship
-	{
-
-	public float minVelocity;
 
 
-	void Awake()
-	{
-		float temp = Random.Range(minVelocity, maxVelocity);
-		rb.velocity = new Vector3(0.0f, -temp, 0.0f);
-	}
+/*
+ 
+ Change abstract to interface 
+ and override 
 
+ Just figure it out I guess 
+ 
+ */
+public interface Enemy
+{
 
-	public void OnTriggerEnter(Collider other)
-		{
-		if (other.gameObject.CompareTag("TopBoundary"))
-			{ return; }
-		if (other.gameObject.CompareTag("Boundary") || (other.gameObject.CompareTag("Player")))
-			{Destroy(this.gameObject);}
-		if (other.gameObject.CompareTag("PlayerBullet"))
-			{
-			if (lives == 0) 
-			{
-				Destroy(this.gameObject);
-			} else {
-				lives -= 1;
-			}
-		}
+    public Rigidbody rb { get; }
+    public float Speed { get; set; }
+    public float Rotation { get; set; }
+    public float Lives { get; set; }
+    public float Scale { get; set; }
+    public float SpawnLocation { get; set; }
+    public Vector3 Direction { get; set; }
+    //public void Move();
+    //public void Create();
+    //public void OnTriggerEnter(Collider other);
+    //public void Start();
 
 	}
-
-}
