@@ -13,20 +13,9 @@ public class Projectile : MonoBehaviour
 
 	public System.Action destroyed;
 
-	//Implemnt second Observer pattern
-	// Code referenced from Parisa's Lecture 4 Videos: https://drive.google.com/file/d/1mKuH4BzcJgqX2wQFOKWYbX6r7i3cS7mQ/view
-	//public static event Action boom;
-
-	//Private AudioSource variable to store audio clip
-	//private AudioSource _audioSource;
-
 	private float speed, rotation;
 
-	//Awake function to initialize audio upon loading the game
-	//private void Awake()
- //   {
-	//	_audioSource = GetComponent<AudioSource>();
- //   }
+
 
 	void Start()
 		{
@@ -34,7 +23,7 @@ public class Projectile : MonoBehaviour
 		rotation = UnityEngine.Random.Range(rotation_min, rotation_max);
 		speed = UnityEngine.Random.Range(speed_min, speed_max);
 		}
-	// Update is called once per frame
+	
 	void Update()
 		{
 		if (this.gameObject.CompareTag("Asteroid"))
@@ -56,29 +45,16 @@ public class Projectile : MonoBehaviour
 
             this.destroyed.Invoke();
 
-		//	//Invoke boom action
-		//	#region audioObserver
-		////	boom?.Invoke();
-		//	#endregion
 
 			}
 
-		//Play the audio clip once 'boom' action is invoked
-		//Projectile.boom += PlayAudio;
 
 		Destroy(this.gameObject);
 		
 		}
 
-	//Playaudio function is called once 'boom' action is invoked/true
-	//private void PlayAudio()
-	//	 {
-	//		//Audiosource variable calls the 'Play' function to play the audio clip once called.	
-	//		_audioSource.Play();
 
-	//	 }
 	
 	}
 
 
-//Debug.Log("I was destroyed by "+other.gameObject.tag);
