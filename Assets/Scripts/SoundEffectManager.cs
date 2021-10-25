@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class MusicManager : MonoBehaviour
+public class SoundEffectManager : MonoBehaviour
 {
 
-    //Implement Observer pattern action
-    // Code referenced from Parisa's Lecture 4 Videos: https://drive.google.com/file/d/1mKuH4BzcJgqX2wQFOKWYbX6r7i3cS7mQ/view
-    public static event Action shoot;
-
     //Create a variable to store audio clip
-    protected AudioSource _audioSource;
+   private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -20,11 +16,11 @@ public class MusicManager : MonoBehaviour
 
         //This section of code was referenced: https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html
         //Create an array of the GameObject that looks for gameobjects with the tag "Music"
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
+        GameObject[] soundEffect = GameObject.FindGameObjectsWithTag("SoundEffects");
 
         //This if statement will destroy the music game object if it has already been created
-        //When switching from the lose screen back to the game screen, the 'objs' variable will be greater then 1.Therefore, we destroy the object so the '_audioSource' will be re-invoked without a null value
-        if (objs.Length > 1)
+        //When switching from the lose screen back to the game screen, the 'soundEffect' variable will be greater then 1.Therefore, we destroy the object so the '_audioSource' will be re-invoked without a null value
+        if (soundEffect.Length > 1)
         {
             Destroy(this.gameObject);
         }
@@ -35,9 +31,8 @@ public class MusicManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-
-      //Audio is played when the shoot functions is called and the 'shoot' action is invoked
-      MusicManager.shoot += PlayAudio;
+      //Audio is played on the first shot. 'has_Shot' is invoked and the PlayAudio clip is called on Awake.
+        Player.has_Shot += PlayAudio;
 
     }
 
@@ -46,17 +41,11 @@ public class MusicManager : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Invoking the Observer pattern
-            //If the player press the spacebar to shoot,
-            // the Shoot action becomes true and is now invoked
-            #region observer
-            shoot?.Invoke();
-            #endregion
+        { 
 
-            //Audio is played when the shoot functions is called and the 'shoot' action is invoked
-            MusicManager.shoot += PlayAudio;
-
+            //Audio is played when the player press' the spacebar. The has_Shot action is called from the player class
+            //and then calls the PlayAudio function. This will play the audio clip
+             Player.has_Shot += PlayAudio;
 
         }
     }

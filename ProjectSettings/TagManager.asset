@@ -11,6 +11,7 @@ TagManager:
   - PlayerBullet
   - TopBoundary
   - Music
+  - SoundEffects
   layers:
   - Default
   - TransparentFX

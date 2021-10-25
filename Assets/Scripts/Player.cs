@@ -11,6 +11,10 @@ public class Player : Spaceship
 	public int bounce;
 	public TextMeshProUGUI livesText;
 
+	//Implement Observer pattern action
+	// Code referenced from Parisa's Lecture 4 Videos: https://drive.google.com/file/d/1mKuH4BzcJgqX2wQFOKWYbX6r7i3cS7mQ/view
+	public static event Action has_Shot;
+
 
 	// Update is called once per frame
 	public void Update()
@@ -20,6 +24,11 @@ public class Player : Spaceship
 			{
 			
 			Shoot();
+
+			//Invoking the Observer pattern
+			//If the player press the spacebar to shoot, the 'has_Shot' action becomes true and is now invoked
+			//This prevents the player from repeatedly playing the audio while shooting.
+			has_Shot?.Invoke();
 
 			}
 		}

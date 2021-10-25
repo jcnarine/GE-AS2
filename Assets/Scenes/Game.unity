@@ -786,8 +786,8 @@ GameObject:
   - component: {fileID: 1374526060}
   - component: {fileID: 1374526061}
   m_Layer: 6
-  m_Name: Music
-  m_TagString: Music
+  m_Name: Sound Effects
+  m_TagString: SoundEffects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
