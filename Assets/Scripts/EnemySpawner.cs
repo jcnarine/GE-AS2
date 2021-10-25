@@ -18,18 +18,31 @@ public class EnemySpawner : MonoBehaviour
 	public float waveTimer;
 	public int wave = 1;
 
+	public Canvas menu;
+	public TextMeshProUGUI EnemyMin;
+	public TextMeshProUGUI EnemyMax;
+
+
 	// Start is called before the first frame update
 	void Start()
 		{
-		Invoke("SpawnEnemies", spawnTimer);
-		Invoke("nextWave", waveTimer);
-		}
+		Time.timeScale = 0;
+		menu.enabled = true;
+
+	}
 
 	// Update is called once per frame
 	void Update()
 		{
 
 		}
+	public void StartGame()
+    {
+		Time.timeScale = 1;
+		menu.enabled = false;
+		Invoke("SpawnEnemies", spawnTimer);
+		Invoke("nextWave", waveTimer);
+	}
 
 	void nextWave()
 		{
