@@ -6,8 +6,8 @@ public class CommandInvoker : MonoBehaviour
 {
     static Queue<ICommand> commandBuffer;
 
-    static List<ICommand> commandHistory;
-    static int counter;
+    static public List<ICommand> commandHistory;
+    static public int counter;
 
     private void Awake() 
     {
@@ -17,17 +17,20 @@ public class CommandInvoker : MonoBehaviour
 
     public static void AddCommand(ICommand command)
     {
-        while(commandHistory.Count > counter)
+        while (commandHistory.Count > counter)
         {
             commandHistory.RemoveAt(counter);
         }
-        
+       // Debug.Log("CH: " + commandHistory.Count);
         commandBuffer.Enqueue(command);
+       // Debug.Log("CB: "+commandBuffer.Count);
     }
 
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log("dude are you serious");
+
         if (commandBuffer.Count > 0)
         {
             ICommand c = commandBuffer.Dequeue();
@@ -35,25 +38,39 @@ public class CommandInvoker : MonoBehaviour
             
             commandHistory.Add(c);
             counter++;
+            //Debug.Log("counnter: "+ counter);
+
         }
-        else
+
+        //else
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Z))
+        //    {
+        //        if (counter > 0)
+        //        {
+        //            counter--;
+        //            commandHistory[counter].Undo();
+        //        }
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.R))
+        //    {
+        //        if (counter < commandHistory.Count)
+        //        {
+        //            commandHistory[counter].Execute();
+        //            counter++;
+        //        }
+        //    }
+        //}
+    }
+
+    public static void UndoCommand()
+    {
+        if (counter > 0)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                if (counter > 0)
-                {
-                    counter--;
-                    commandHistory[counter].Undo();
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.R))
-            {
-                if (counter < commandHistory.Count)
-                {
-                    commandHistory[counter].Execute();
-                    counter++;
-                }
-            }
+            counter--;
+            commandHistory[counter].Undo();
+
         }
     }
+
 }
