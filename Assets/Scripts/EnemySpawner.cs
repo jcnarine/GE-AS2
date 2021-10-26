@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
 
 public class EnemySpawner : MonoBehaviour
 	{
@@ -25,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
 	public TextMeshProUGUI enemyText;
 	public TextMeshProUGUI waveCountText;
 
+	[DllImport("A2Plugin")]
+	private static extern int randomScale(float i1, float i2);
 
 	// Start is called before the first frame update
 	void Start()		{
@@ -113,8 +116,8 @@ public class EnemySpawner : MonoBehaviour
 			if (Random.Range(0, 2) > 0)
 			{
 				Projectile asteroid = Instantiate(asteroidPrefab, spawnLocation, Quaternion.identity);
-				int randomScale = Random.Range(min_Size, max_Size);
-				asteroid.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+				int rand = randomScale(min_Size, max_Size); // Random.Range(min_Size, max_Size);
+				asteroid.transform.localScale = new Vector3(rand, rand, rand);
 				Invoke("SpawnEnemies", spawnTimer);
 			}
 			else
