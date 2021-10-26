@@ -14,7 +14,8 @@ The game that we have created is called **Space Shooter.** This game is a 2D-Fix
 
 Note: This game was originally used as Jonathan Narine's Assignment 1 project. For this assignment, we used it as a base to modify and implement design patterns.
 
-###Screenshots:
+### Screenshots:
+
 ![image](https://user-images.githubusercontent.com/56047837/138800027-9b7a014d-e4ab-4712-a928-6180479bf2be.png)
 
 ![image](https://user-images.githubusercontent.com/56047837/138800094-eabc89e4-4dca-40e2-b851-26a055397aa5.png)
