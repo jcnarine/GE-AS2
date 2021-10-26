@@ -14,10 +14,18 @@ The game that we have created is called **Space Shooter.** This game is a 2D-Fix
 
 Note: This game was originally used as Jonathan Narine's Assignment 1 project. For this assignment, we used it as a base to modify and implement design patterns.
 
+###Screenshots:
+![image](https://user-images.githubusercontent.com/56047837/138800027-9b7a014d-e4ab-4712-a928-6180479bf2be.png)
+
+![image](https://user-images.githubusercontent.com/56047837/138800094-eabc89e4-4dca-40e2-b851-26a055397aa5.png)
+
+
 ### UML Diagram
 Here is a UML Diagram of our Observer pattern within the game:
 
 ![image](https://user-images.githubusercontent.com/56273491/138798047-3b7718c9-5d61-4e26-884b-47bf3c278d53.png)
+
+##YouTube Video link:
 
 ## Third-party Acknowledgement/References
 
@@ -53,9 +61,6 @@ https://refactoring.guru/design-patterns/command (Commannd Documentation for bet
 
 https://www.habrador.com/tutorials/programming-patterns/1-command-pattern/
 
-**Randomizing in C++ Reference:**
-
-https://www.softwaretestinghelp.com/random-number-generator-cpp/
 
 **Tutorial's Referenced:**
 
