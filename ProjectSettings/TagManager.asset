@@ -10,6 +10,8 @@ TagManager:
   - EnemyBullet
   - PlayerBullet
   - TopBoundary
+  - Menu
+  - SoundEffects
   layers:
   - Default
   - TransparentFX

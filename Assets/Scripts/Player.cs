@@ -11,45 +11,31 @@ public class Player : Spaceship
 	public int bounce;
 	public TextMeshProUGUI livesText;
 
-
 	//Implement Observer pattern action
 	// Code referenced from Parisa's Lecture 4 Videos: https://drive.google.com/file/d/1mKuH4BzcJgqX2wQFOKWYbX6r7i3cS7mQ/view
-	public static event Action shoot;
+	public static event Action has_Shot;
 
-	//Create a variable to store audio clip
-	private AudioSource _audioSource;
-
-	//Awake function used to initalize audio upon loading the game
-	private void Awake()
-    {
-		_audioSource = GetComponent<AudioSource>();
-    }
 
 	// Update is called once per frame
 	public void Update()
 		{
 
-     
         if (Input.GetKeyDown(KeyCode.Space) && canShoot)
 			{
-		
-		  //Invoking the Observer pattern
-		  //If the player press the spacebar to shoot,
-		  // the Shoot action becomes true and is now invoked
-		  #region observer
-		  shoot?.Invoke();
-		  #endregion
+			
+			Shoot();
 
-		  Shoot();
-
-		  //Audio is played when the shoot functions is called and the 'shoot' action is invoked
-		  Player.shoot += PlayAudio;
+			//Invoking the Observer pattern
+			//If the player press the spacebar to shoot, the 'has_Shot' action becomes true and is now invoked
+			//This prevents the player from repeatedly playing the audio while shooting.
+			has_Shot?.Invoke();
 
 			}
 		}
 
 	public void FixedUpdate()
 		{
+
 		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 			{
 			rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
@@ -90,12 +76,5 @@ public class Player : Spaceship
 			}
 		}
 
-		//Playaduio function which is called when the 'shoot' action is true
-		private void PlayAudio()
-		{
-			//The audiosource variable calls the play function. This function will play the audio attached to the audio source component
-			_audioSource.Play();
-
-		}
 
 	}
