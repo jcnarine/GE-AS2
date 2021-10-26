@@ -6,15 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 	{
-	public float min__X = -1056f, max__X = 1056;
-	public int min_Size = 15, max_Size = 30;
 
-	public Projectile asteroidPrefab;
-	public GameObject enemyPrefab;
+	public float _minX = -1056f, _maxX = 1056;
+	public int _minSize = 15, _maxSize = 30;
+	public float _minSpeed, _maxSpeed;
+	public float _minRotation, _maxRotation;
+	public float _Lives;
+	public Vector3 _Direction;
+
+	public GameObject asteroidPrefab, enemyPrefab;
 	public string sceneName;
 
 	public TextMeshProUGUI WaveText;
-	public float spawnTimer; 
+	public float spawnTimer;
 	public float waveTimer;
 	public int wave = 1;
 
@@ -34,35 +38,45 @@ public class EnemySpawner : MonoBehaviour
 	void nextWave()
 		{
 		if (wave < 5)
-			{ wave += 1; WaveText.text = "Wave "+wave;
-			  Invoke("nextWave", waveTimer);
+			{
+			wave += 1; WaveText.text = "Wave " + wave;
+			Invoke("nextWave", waveTimer);
 			}
 		else
-			{SceneManager.LoadScene("YouWon");}
+			{ SceneManager.LoadScene("YouWon"); }
 		}
 
 	void SpawnEnemies()
+
 		{
 
-		float pos__X = Random.Range(min__X, max__X);
-
-
-		Vector3 spawnLocation = transform.position;
-
-		spawnLocation.x = pos__X;
-
-		if (Random.Range(0, 2) > 0)
-			{
-			Projectile asteroid = Instantiate(asteroidPrefab, spawnLocation, Quaternion.identity);
-			int randomScale = Random.Range(min_Size, max_Size);
-			asteroid.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
-			Invoke("SpawnEnemies", spawnTimer);
-			}
-		else
-			{
-			Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
-			Invoke("SpawnEnemies", spawnTimer);
-			}
 		}
 	}
 
+
+/*
+	Create location, tempsize and rotation
+	Assign to transform 
+	Pass transform directly to asteroidfactory
+	Returns asteroid object with variables and transform that modifies 
+	Invoke Spawn Enemies 
+
+
+	float pos_X = Random.Range(_minX, _maxX);
+
+	float _tempSize = Random.Range(_minSize, _maxSize);
+
+	float _tempSpeed = Random.Range(_minSpeed, _maxSpeed);
+
+	float _tempRotation = Random.Range(_minRotation, _maxRotation);
+
+	_Direction = new Vector3(0, -1, 0);
+
+	_Lives = 1f;
+
+	AsteroidFactory asteroidfactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos_X, _Direction, asteroidPrefab);
+
+	Object Asteroid = asteroidfactory.GetObject();
+
+	Invoke("SpawnEnemies", spawnTimer);
+ */
