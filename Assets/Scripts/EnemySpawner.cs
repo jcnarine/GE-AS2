@@ -68,12 +68,33 @@ public class EnemySpawner : MonoBehaviour
 
 		Invoke("SpawnEnemies", spawnTimer);
 
-		/*
-		 Create location, tempsize and rotation
-		 Assign to transform 
-		 Pass transform directly to asteroidfactory
-		 Returns asteroid object with variables and transform that modifies 
-		 Invoke Spawn Enemies 
-		 */
 		}
 	}
+
+
+/*
+	Create location, tempsize and rotation
+	Assign to transform 
+	Pass transform directly to asteroidfactory
+	Returns asteroid object with variables and transform that modifies 
+	Invoke Spawn Enemies 
+
+
+	float pos_X = Random.Range(_minX, _maxX);
+
+	float _tempSize = Random.Range(_minSize, _maxSize);
+
+	float _tempSpeed = Random.Range(_minSpeed, _maxSpeed);
+
+	float _tempRotation = Random.Range(_minRotation, _maxRotation);
+
+	_Direction = new Vector3(0, -1, 0);
+
+	_Lives = 1f;
+
+	AsteroidFactory asteroidfactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos_X, _Direction, asteroidPrefab);
+
+	Object Asteroid = asteroidfactory.GetObject();
+
+	Invoke("SpawnEnemies", spawnTimer);
+ */
