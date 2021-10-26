@@ -9,8 +9,9 @@ public class Asteroid : MonoBehaviour, Object
 	private Rigidbody _Rb;
 	private float _Speed, _Rotation, _Lives, _Scale, _SpawnLocation;
 	private Vector3 _Direction;
+	private GameObject _GameObject;
 
-	public Asteroid(float s, float r, float l, Vector3 d, float sc, float sp)
+	public Asteroid(float s, float r, float l, Vector3 d, float sc, float sp, GameObject g)
 		{
 		_Speed = s;
 		_Rotation = r;
@@ -19,11 +20,20 @@ public class Asteroid : MonoBehaviour, Object
 		_Direction = d;
 		_Scale = sc;
 		_SpawnLocation = sp;
+		_GameObject = g;
 		}
 	public Rigidbody rb
 		{
 
 		get { return _Rb; }
+
+		}
+
+	public GameObject GameObject
+		{
+
+		get { return _GameObject; }
+		set { _GameObject = value; }
 
 		}
 
@@ -75,8 +85,8 @@ public class Asteroid : MonoBehaviour, Object
 
 	public void Move()
 		{
-		rb.MovePosition(this.transform.position + (_Direction * _Speed * Time.deltaTime));
-		transform.Rotate(transform.rotation.x + _Rotation, transform.rotation.y, transform.rotation.z);
+		rb.MovePosition(GameObject.transform.position + (_Direction * _Speed * Time.deltaTime));
+		GameObject.transform.Rotate(GameObject.transform.rotation.x + _Rotation, GameObject.transform.rotation.y, GameObject.transform.rotation.z);
 		}
 
 
@@ -93,14 +103,14 @@ public class Asteroid : MonoBehaviour, Object
 	public void Start()
 		{
 		Create();
-		transform.localScale = new Vector3(Scale, Scale, Scale);
-		_Rb = GetComponent<Rigidbody>();
+		GameObject.transform.localScale = new Vector3(Scale, Scale, Scale);
+		_Rb = GameObject.GetComponent<Rigidbody>();
 		}
 
 	public void Create()
 		{
-		Vector3 v = new Vector3(SpawnLocation, transform.position.y, transform.position.z);
-		Instantiate(gameObject, v, Quaternion.Euler(0f, -90f, 90f));
+		Vector3 v = new Vector3(SpawnLocation, GameObject.transform.position.y, GameObject.transform.position.z);
+		Instantiate(GameObject, v, Quaternion.Euler(0f, -90f, 90f));
 		}
 
 

@@ -11,7 +11,10 @@ class AsteroidFactory : ObjectFactory
 	private float _speed, _rotation, _scale, _lives, _spawnLocation;
 	private Vector3 _direction;
 
-	public AsteroidFactory(float r, float s, float sc, float l, float sp, Vector3 d)
+	private GameObject _gameObject;
+
+
+	public AsteroidFactory(float r, float s, float sc, float l, float sp, Vector3 d, GameObject t)
 		{
 		_rotation = r;
 		_speed = s;
@@ -19,10 +22,12 @@ class AsteroidFactory : ObjectFactory
 		_direction = d;
 		_lives = l;
 		_spawnLocation = sp;
+		_gameObject = t;
 		}
 
 	public override Object GetObject()
 		{
-		return new Asteroid(_speed, _rotation, _lives, _direction, _scale, _spawnLocation);
+		asteroid = new Asteroid(_speed, _rotation, _lives, _direction, _scale, _spawnLocation, _gameObject);
+		return asteroid;
 		}
 	}

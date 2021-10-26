@@ -12,7 +12,8 @@ public interface Object
     public float Scale { get; set; }
     public float SpawnLocation { get; set; }
     public Vector3 Direction { get; set; }
-	public void Move();
+    public GameObject GameObject { get; set; }
+    public void Move();
 	public void Create();
 	public void OnTriggerEnter(Collider other);
 	public void Start();

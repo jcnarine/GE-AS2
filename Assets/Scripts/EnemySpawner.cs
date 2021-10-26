@@ -38,7 +38,8 @@ public class EnemySpawner : MonoBehaviour
 	void nextWave()
 		{
 		if (wave < 5)
-			{ wave += 1; WaveText.text = "Wave " + wave;
+			{
+			wave += 1; WaveText.text = "Wave " + wave;
 			Invoke("nextWave", waveTimer);
 			}
 		else
@@ -49,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
 
 		{
 
-		float pos__X = Random.Range(_minX, _maxX);
+		float pos_X = Random.Range(_minX, _maxX);
 
 		float _tempSize = Random.Range(_minSize, _maxSize);
 
@@ -61,38 +62,18 @@ public class EnemySpawner : MonoBehaviour
 
 		_Lives = 1f;
 
-		AsteroidFactory asteroidfactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos__X, _Direction);
+		AsteroidFactory asteroidfactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos_X, _Direction, asteroidPrefab);
 
-		enemyFactory enemyFactory
+		Object Asteroid = asteroidfactory.GetObject();
 
 		Invoke("SpawnEnemies", spawnTimer);
 
+		/*
+		 Create location, tempsize and rotation
+		 Assign to transform 
+		 Pass transform directly to asteroidfactory
+		 Returns asteroid object with variables and transform that modifies 
+		 Invoke Spawn Enemies 
+		 */
 		}
 	}
-
-
-
-/*
- 
-		//float pos__X = Random.Range(_minX, _maxX);
-
-		////if (Random.Range(0, 2) > 0)
-
-		//	float _tempSize = Random.Range(_minSize, _maxSize);
-		//	float _tempSpeed = Random.Range(_minSpeed, _maxSpeed);
-		//	float _tempRotation = Random.Range(_minRotation, _maxRotation);
-
-		//	_Direction = new Vector3(0, -1, 0);
-		//	_Lives = 1f;
-
-		//	AsteroidFactory asteroidFactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos__X, _Direction);
-		//	asteroidFactory.GetEnemy();
-		//	Invoke("SpawnEnemies", spawnTimer);
-			
-		////else
-		////	{
-		////	//Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
-		////	//Invoke("SpawnEnemies", spawnTimer);
-		////	}
- 
- */
