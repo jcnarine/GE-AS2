@@ -53,6 +53,9 @@ https://refactoring.guru/design-patterns/command (Commannd Documentation for bet
 
 https://www.habrador.com/tutorials/programming-patterns/1-command-pattern/
 
+**Randomizing in C++ Reference:**
+
+https://www.softwaretestinghelp.com/random-number-generator-cpp/
 
 **Tutorial's Referenced:**
 
