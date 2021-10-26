@@ -5,33 +5,44 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 	{
 
-	public GameObject _Prefab;
-	public Rigidbody _Rb;
-	public float _minRotation, _maxRotation;
-	public float _minSpeed, _maxSpeed;
-
-	public float _Speed, _Rotation, _Lives, _Scale, _SpawnLocation;
-	public Vector3 _Direction;
+	public Vector3 direction;
+	public Rigidbody rb;
+	public float speed_min, speed_max;
+	public float rotation_min, rotation_max;
 
 	public System.Action destroyed;
 
+	private float speed, rotation;
+
 	void Start()
 		{
-		_Rb = GetComponent<Rigidbody>();
-		_Rotation = Random.Range(_minRotation, _maxRotation);
-		_Speed = Random.Range(_minSpeed, _maxSpeed);
+		rb = GetComponent<Rigidbody>();
+		rotation = Random.Range(rotation_min, rotation_max);
+		speed = Random.Range(speed_min, speed_max);
 		}
 	// Update is called once per frame
 	void Update()
 		{
-
-		_Rb.AddForce(_Direction * _Speed, ForceMode.Impulse);
-	
+		if (this.gameObject.CompareTag("Asteroid"))
+			{
+			rb.MovePosition(transform.position + (direction * speed * Time.deltaTime));
+			transform.Rotate(transform.rotation.x + rotation, transform.rotation.y, transform.rotation.z);
+			}
+		else
+			{
+			rb.AddForce(direction * speed, ForceMode.Impulse);
+			}
 		}
 
 	private void OnTriggerEnter(Collider other)
 		{
-		this.destroyed.Invoke();
+		if (this.gameObject.CompareTag("Asteroid") && other.gameObject.CompareTag("Asteroid")|| other.gameObject.CompareTag("TopBoundary") && this.gameObject.CompareTag("Asteroid")|| other.gameObject.CompareTag("TopBoundary") && this.gameObject.CompareTag("Enemy")) { return; }
+		if (this.gameObject.CompareTag("PlayerBullet"))
+			{
+			this.destroyed.Invoke();
+			}
 		Destroy(this.gameObject);
 		}
 	}
+
+//Debug.Log("I was destroyed by "+other.gameObject.tag);
