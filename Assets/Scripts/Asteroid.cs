@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : Enemy
+public class Asteroid : MonoBehaviour, Object
 
 	{
 
@@ -73,40 +73,41 @@ public class Asteroid : Enemy
 		set { _Direction = value; }
 		}
 
-	//public void Move()
-	//	{
-	//	rb.MovePosition(this.transform.position + (_Direction * _Speed * Time.deltaTime));
-	//	transform.Rotate(transform.rotation.x + _Rotation, transform.rotation.y, transform.rotation.z);
-	//	}
-
-	
-	//public void OnTriggerEnter(Collider other)
-	//	{
-	//	_Lives--;
-	//	if (other.gameObject.CompareTag("Asteroid") || other.gameObject.CompareTag("TopBoundary")) { return; }
-	//	if (_Lives == 0) 
-	//		{
-	//		Destroy(this.gameObject);
-	//		}
-	//	}
-
-	//public void Start()
-	//	{
-	//	_Rb = GetComponent<Rigidbody>();
-	//	transform.localScale = new Vector3(Scale, Scale, Scale);
-	//	Create();
-	//	}
-
-	//public void Create()
-	//	{
-	//		Vector3 v = new Vector3(SpawnLocation, transform.position.y, transform.position.z );
-	//		Instantiate(gameObject, v, Quaternion.Euler(0f, -90f, 90f));
-	//	}
+	public void Move()
+		{
+		rb.MovePosition(this.transform.position + (_Direction * _Speed * Time.deltaTime));
+		transform.Rotate(transform.rotation.x + _Rotation, transform.rotation.y, transform.rotation.z);
+		}
 
 
-	//public void Update()
-	//	{
-	//	Move();
-	//	}
+	public void OnTriggerEnter(Collider other)
+		{
+		_Lives--;
+		if (other.gameObject.CompareTag("Asteroid") || other.gameObject.CompareTag("TopBoundary")) { return; }
+		if (_Lives == 0)
+			{
+			Destroy(this.gameObject);
+			}
+		}
+
+	public void Start()
+		{
+		Create();
+		transform.localScale = new Vector3(Scale, Scale, Scale);
+		_Rb = GetComponent<Rigidbody>();
+		}
+
+	public void Create()
+		{
+		Vector3 v = new Vector3(SpawnLocation, transform.position.y, transform.position.z);
+		Instantiate(gameObject, v, Quaternion.Euler(0f, -90f, 90f));
+		}
+
+
+	public void Update()
+		{
+		Move();
+		}
+
 
 	}

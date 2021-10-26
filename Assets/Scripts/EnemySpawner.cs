@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
 	public string sceneName;
 
 	public TextMeshProUGUI WaveText;
-	public float spawnTimer; 
+	public float spawnTimer;
 	public float waveTimer;
 	public int wave = 1;
 
@@ -38,37 +38,61 @@ public class EnemySpawner : MonoBehaviour
 	void nextWave()
 		{
 		if (wave < 5)
-			{ wave += 1; WaveText.text = "Wave "+wave;
-			  Invoke("nextWave", waveTimer);
+			{ wave += 1; WaveText.text = "Wave " + wave;
+			Invoke("nextWave", waveTimer);
 			}
 		else
-			{SceneManager.LoadScene("YouWon");}
+			{ SceneManager.LoadScene("YouWon"); }
 		}
 
 	void SpawnEnemies()
+
 		{
 
 		float pos__X = Random.Range(_minX, _maxX);
 
-		if (Random.Range(0, 2) > 0)
+		float _tempSize = Random.Range(_minSize, _maxSize);
 
-			{
+		float _tempSpeed = Random.Range(_minSpeed, _maxSpeed);
 
-			float _tempSize = Random.Range(_minSize, _maxSize);
-			float _tempSpeed = Random.Range(_minSpeed, _maxSpeed);
-			float _tempRotation = Random.Range(_minRotation, _maxRotation);
+		float _tempRotation = Random.Range(_minRotation, _maxRotation);
 
-			_Direction = new Vector3(0, -1, 0);
-			_Lives = 1f;
+		_Direction = new Vector3(0, -1, 0);
 
-			AsteroidFactory asteroidFactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos__X, _Direction);
-			Invoke("SpawnEnemies", spawnTimer);
-			}
-		else
-			{
-			//Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
-			//Invoke("SpawnEnemies", spawnTimer);
-			}
+		_Lives = 1f;
+
+		AsteroidFactory asteroidfactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos__X, _Direction);
+
+		enemyFactory enemyFactory
+
+		Invoke("SpawnEnemies", spawnTimer);
+
 		}
 	}
 
+
+
+/*
+ 
+		//float pos__X = Random.Range(_minX, _maxX);
+
+		////if (Random.Range(0, 2) > 0)
+
+		//	float _tempSize = Random.Range(_minSize, _maxSize);
+		//	float _tempSpeed = Random.Range(_minSpeed, _maxSpeed);
+		//	float _tempRotation = Random.Range(_minRotation, _maxRotation);
+
+		//	_Direction = new Vector3(0, -1, 0);
+		//	_Lives = 1f;
+
+		//	AsteroidFactory asteroidFactory = new AsteroidFactory(_tempRotation, _tempSpeed, _tempSize, _Lives, pos__X, _Direction);
+		//	asteroidFactory.GetEnemy();
+		//	Invoke("SpawnEnemies", spawnTimer);
+			
+		////else
+		////	{
+		////	//Instantiate(enemyPrefab, spawnLocation, Quaternion.Euler(0f, -90f, 90f));
+		////	//Invoke("SpawnEnemies", spawnTimer);
+		////	}
+ 
+ */

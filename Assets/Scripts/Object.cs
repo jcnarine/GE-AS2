@@ -2,17 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-/*
- 
- Change abstract to interface 
- and override 
-
- Just figure it out I guess 
- 
- */
-public interface Enemy
+public interface Object
 {
 
     public Rigidbody rb { get; }
@@ -22,9 +12,9 @@ public interface Enemy
     public float Scale { get; set; }
     public float SpawnLocation { get; set; }
     public Vector3 Direction { get; set; }
-    //public void Move();
-    //public void Create();
-    //public void OnTriggerEnter(Collider other);
-    //public void Start();
+	public void Move();
+	public void Create();
+	public void OnTriggerEnter(Collider other);
+	public void Start();
 
 	}

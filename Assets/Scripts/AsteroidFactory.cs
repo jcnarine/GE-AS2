@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
- class AsteroidFactory : EnemyFactory
-{
+class AsteroidFactory : ObjectFactory
+	{
+
+	[SerializeField]
+	private Asteroid asteroid;
+
 	private float _speed, _rotation, _scale, _lives, _spawnLocation;
 	private Vector3 _direction;
 
@@ -17,9 +21,8 @@ using UnityEngine;
 		_spawnLocation = sp;
 		}
 
-	public override Enemy GetEnemy() 
+	public override Object GetObject()
 		{
 		return new Asteroid(_speed, _rotation, _lives, _direction, _scale, _spawnLocation);
 		}
-
-}
+	}
