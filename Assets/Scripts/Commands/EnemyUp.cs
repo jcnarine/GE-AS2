@@ -7,7 +7,6 @@ public class EnemyUp : ICommand
     public void Execute()
     {
         EnemyLimiter.Increase();
-        //EnemySpawner.enemyLimit++;
     }
 
 

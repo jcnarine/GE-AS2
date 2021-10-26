@@ -80,7 +80,6 @@ public class EnemySpawner : MonoBehaviour
 		ICommand foePlus = new EnemyUp();
 		CommandInvoker.AddCommand(foePlus);
 
-
 	}
 	public void FoeDown()
 	{

@@ -38,25 +38,6 @@ public class CommandInvoker : MonoBehaviour
 
         }
 
-        //else
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Z))
-        //    {
-        //        if (counter > 0)
-        //        {
-        //            counter--;
-        //            commandHistory[counter].Undo();
-        //        }
-        //    }
-        //    else if (Input.GetKeyDown(KeyCode.R))
-        //    {
-        //        if (counter < commandHistory.Count)
-        //        {
-        //            commandHistory[counter].Execute();
-        //            counter++;
-        //        }
-        //    }
-        //}
     }
 
     public static void UndoCommand()
