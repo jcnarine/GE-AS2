@@ -8,6 +8,7 @@ Jonathan Narine: 100741302
 
 Ehren Chan: 100753167
 
+### YouTube link for Demo Video: https://youtu.be/tBmOxlB_Srw
 
 ### Game Description
 The game that we have created is called **Space Shooter.** This game is a 2D-Fixed shooter game, reminiscent to that of Galaga or Space Invaders. In this game, you play as a spaceship flying through space as you attempt to survive by shooting your way through wave after waves of enemy spacecraft and asteroids. Each wave lasts around 10 seconds and the amount of enemies and asteroids vary each wave. Your goal is to survive until the final wave is complete. 
