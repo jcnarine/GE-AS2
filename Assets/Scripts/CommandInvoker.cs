@@ -21,15 +21,12 @@ public class CommandInvoker : MonoBehaviour
         {
             commandHistory.RemoveAt(counter);
         }
-       // Debug.Log("CH: " + commandHistory.Count);
         commandBuffer.Enqueue(command);
-       // Debug.Log("CB: "+commandBuffer.Count);
     }
 
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log("dude are you serious");
 
         if (commandBuffer.Count > 0)
         {
@@ -38,7 +35,6 @@ public class CommandInvoker : MonoBehaviour
             
             commandHistory.Add(c);
             counter++;
-            //Debug.Log("counnter: "+ counter);
 
         }
 

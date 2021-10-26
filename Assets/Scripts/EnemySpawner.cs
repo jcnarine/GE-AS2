@@ -46,17 +46,13 @@ public class EnemySpawner : MonoBehaviour
 		if (menu.enabled == true)
         {
 			enemyText.text = "Enemy Count: " + enemyLimit;
-			Debug.Log("EL: " + enemyLimit);
-
 			waveCountText.text = "Total Waves: " + EnemySpawner.waveTotal;
-			Debug.Log("Wave: " + waveTotal);
 		}
 
 	}
     public void StartGame()
     {
 		menu.enabled = false;
-		//Debug.Log(CommandInvoker.counter);
 		Invoke("SpawnEnemies", spawnTimer);
 		Invoke("nextWave", waveTimer);
 
@@ -67,7 +63,6 @@ public class EnemySpawner : MonoBehaviour
 
 		if (wave < waveTotal)
 			{
-			Debug.Log("wave Inside: " + wave);
 			wave += 1;
 			WaveText.text = "Wave " + wave;
 			enemyCount = 0;
@@ -96,7 +91,6 @@ public class EnemySpawner : MonoBehaviour
 	{
 		ICommand wavePlus = new WavesUp();
 		CommandInvoker.AddCommand(wavePlus);
-		Debug.Log("wave actually: " + wave);
 
 	}
 	public void WaveDown()
@@ -126,7 +120,6 @@ public class EnemySpawner : MonoBehaviour
 				Invoke("SpawnEnemies", spawnTimer);
 			}
 			enemyCount++;
-			Debug.Log("Enemy Count: " + enemyCount);
 		}
 	}
 }
